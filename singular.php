@@ -9,7 +9,7 @@
 
 get_header();
 ?>
-<div id="main-content" class="main-content">
+<main id="main-content" class="main-content" role="main">
 
 <?php
 	while ( have_posts() ) :
@@ -27,7 +27,7 @@ get_header();
 	endwhile; // End of the loop.
 ?>
 
-</div><!-- #main-content -->
+</main><!-- #main-content -->
 
 <?php
 get_sidebar();

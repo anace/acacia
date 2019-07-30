@@ -10,7 +10,7 @@
 get_header();
 ?>
 
-<div id="main-content" class="main-content">
+<main id="main-content" class="main-content" role="main">
 		<section class="error-404 not-found">
 			<header class="page-header">
 				<h1 class="page-title"><?php esc_html_e( 'Oops! That page can&rsquo;t be found.', 'acacia' ); ?></h1>
@@ -51,7 +51,7 @@ get_header();
 			</div><!-- .page-content -->
 		</section><!-- .error-404 -->
 
-</div><!-- #main-content -->
+</main><!-- #main-content -->
 
 <?php
 get_footer();

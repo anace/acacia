@@ -5,7 +5,7 @@
  * navigation support for dropdown menus.
  */
 ( function() {
-	var container, button, dropdown, parentLink, menu, submenu, links, i, len;
+	var container, button, dropdown, icon, screenreadertext, parentLink, menu, submenu, links, i, len;
 
 	container = document.getElementById( 'main-navigation' );
 	if ( ! container ) {
@@ -39,7 +39,6 @@
 		icon.setAttribute( 'aria-hidden', 'true' );
 		screenreadertext.classList.add('screen-reader-text');
 		screenreadertext.textContent = acaciaScreenReaderText.expand;
-		
 
 		dropdown.onclick = function() {
 			parentLink = this.parentElement;

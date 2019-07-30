@@ -13,7 +13,7 @@ Acacia is a light WordPress theme based on Underscores.
 
 == Description ==
 
-Acacia is a light WordPress theme based on Underscores.
+Acacia is a light WordPress theme based on Underscores. The theme is developed using new web development technologies, so it may not work optimally in old browsers or operative systems.
 
 == Installation ==
 

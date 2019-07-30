@@ -29,6 +29,8 @@ Nicolas Gallagher and Jonathan Neal https://necolas.github.io/normalize.css/
 5. Navigation
 	5.1 Links
 	5.2 Menus
+	5.3 Blog, posts and pages navigation
+	5.4 Other navigation
 6. Accessibility
 7. Alignments
 8. Clearings
@@ -669,8 +671,7 @@ a:hover, a:active {
 .site-navigation ul li {
 	display: block;
 	width: 100%;
-	/*! position: relative; */
-	border-top: 0.5px solid #bbb;
+	border-top: 1px solid #bbb;
 }
 
 /* Esto capaz que no hace falta */
@@ -826,59 +827,10 @@ a:hover, a:active {
 	content: "\273c";
 }
 
-/*--------------------------------------------------------------*/
-/*.main-navigation {
-	clear: both;
-	display: block;
-	width: 100%;
-}
-
-.main-navigation ul {
-	display: none;
-	list-style: none;
-	margin: 0;
-	padding-left: 0;
-}
-
-.main-navigation ul ul {
-	box-shadow: 0 3px 3px rgba(0, 0, 0, 0.2);
-	float: left;
-	position: absolute;
-	top: 100%;
-	left: -999em;
-	z-index: 99999;
-}
-
-.main-navigation ul ul ul {
-	left: -999em;
-	top: 0;
-}
-
-.main-navigation ul ul li:hover > ul,
-.main-navigation ul ul li.focus > ul {
-	left: 100%;
-}
-
-.main-navigation ul ul a {
-	width: 200px;
-}
-
-.main-navigation ul li:hover > ul,
-.main-navigation ul li.focus > ul {
-	left: auto;
-}
-
-.main-navigation li {
-	float: left;
-	position: relative;
-}
-
-.main-navigation a {
-	display: block;
-	text-decoration: none;
-}*/
-
-
+/* ---------------------------------------------
+5.3 Blog, posts and pages navigation
+5.4 Other navigation
+-----------------------------------------------*/
 
 .site-main .comment-navigation,
 .site-main .posts-navigation,
@@ -973,6 +925,10 @@ a:hover, a:active {
 --------------------------------------------------------------*/
 .clear:before,
 .clear:after,
+article:before,
+article:after,
+nav:before,
+nav:after,
 .entry-content:before,
 .entry-content:after,
 .comment-content:before,
@@ -981,18 +937,22 @@ a:hover, a:active {
 .site-header:after,
 .site-content:before,
 .site-content:after,
+.widget-area:before,
+.widget-area:after,
 .site-footer:before,
 .site-footer:after {
 	content: "";
-	display: table;
-	table-layout: fixed;
+	display: block;
 }
 
 .clear:after,
+article:after,
+nav:after,
 .entry-content:after,
 .comment-content:after,
 .site-header:after,
 .site-content:after,
+.widget-area:after,
 .site-footer:after {
 	clear: both;
 }
@@ -1002,9 +962,10 @@ a:hover, a:active {
 --------------------------------------------------------------*/
 .widget {
 	margin: 0 0 1.5em;
-	/* Make sure select elements fit in widgets. */
+	border: 1px solid;
 }
 
+/* Make sure select elements fit in widgets. */
 .widget select {
 	max-width: 100%;
 }
@@ -1012,17 +973,21 @@ a:hover, a:active {
 .widget ul,
 .widget ol {
 	margin: 0 0 1.5em 0;
+	padding-inline-start: 2em;
 }
 
 /*--------------------------------------------------------------
 10. Header, Main and Footer
 --------------------------------------------------------------*/
 header, footer {
-	padding: 0 1em;
 }
 
 main {
-	padding: 1em;
+
+}
+
+.site {
+	padding: 0 5%;
 }
 
 /*--------------------------------------------------------------
@@ -1166,6 +1131,10 @@ object {
 	display: block;
 }
 
+.wp-block-gallery {
+	margin: 0 0 1.667em 0;
+}
+
 /*--------------------------------------------------------------
 12.3 Blocks
 --------------------------------------------------------------*/
@@ -1192,7 +1161,7 @@ object {
 2. Typography
 3. Elements
 4. Forms
-
+5. Menus
 6. Accessibility
 7. Alignments
 8. Clearings
@@ -1290,23 +1259,55 @@ li > a:only-child:after {
 
 /* 10. Header, Main and Footer  */
 
-header, footer {
-	padding: 0 6%;
-}
-
-main {
-	display: flex;
+.site-header {
+	grid-area: aba;
 	padding: 0;
+	border: 1px solid green;
+	background-color: rgba(0, 0, 125, 0.4);
 }
 
-.main-content {
-	width: 68%;
-	padding: 4em 2% 4em 6%;
+.site-content {
+	grid-area: bob;
+	padding: 0;
+	border: 1px solid blueviolet;
+	background-color: rgba(0, 125, 0, 0.4);
 }
 
-.sidebars{
-	width: 32%;
-	padding: 4em 6% 4em 2%;
+.sidebars {
+	grid-area: sasa;
+	border: 1px solid red;
+	background-color: rgba(125, 0, 0, 0.4);
+}
+
+.site-footer {
+	grid-area: ofo;
+	padding: 1em 0;
+	text-align: center;
+	border: 1px solid yellow;
+	background-color: rgba(0, 125, 125, 0.4);
+
+}
+
+.site {
+	display: grid;
+	grid-template-columns: repeat(3, 1fr);
+	grid-template-rows: auto 100% auto;
+	grid-column-gap: 6%;
+	column-gap: 6%;
+	grid-row-gap: 3em;
+	row-gap: 3em;
+	grid-template-areas:
+	"aba aba aba"
+	"bob bob sasa"
+	"ofo ofo ofo";
+
+
+	padding: 0 6%;
+	border: 4px solid green;
+}
+
+article {
+	border: 1px solid aquamarine;
 }
 
 

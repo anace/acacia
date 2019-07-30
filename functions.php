@@ -96,7 +96,7 @@ function acacia_content_width() {
 	// This variable is intended to be overruled from themes.
 	// Open WPCS issue: {@link https://github.com/WordPress-Coding-Standards/WordPress-Coding-Standards/issues/1043}.
 	// phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedVariableFound
-	$GLOBALS['content_width'] = apply_filters( 'acacia_content_width', 640 );
+	$GLOBALS['content_width'] = apply_filters( 'acacia_content_width', 960 );
 }
 add_action( 'after_setup_theme', 'acacia_content_width', 0 );
 
@@ -110,8 +110,8 @@ function acacia_widgets_init() {
 		'name'          => esc_html__( 'Sidebar', 'acacia' ),
 		'id'            => 'sidebar-1',
 		'description'   => esc_html__( 'Add widgets here.', 'acacia' ),
-		'before_widget' => '<aside id="%1$s" class="widget %2$s">',
-		'after_widget'  => '</aside>',
+		'before_widget' => '<section id="%1$s" class="widget %2$s">',
+		'after_widget'  => '</section>',
 		'before_title'  => '<h2 class="widget-title">',
 		'after_title'   => '</h2>',
 	) );

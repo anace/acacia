@@ -9,8 +9,8 @@
 
 get_header();
 ?>
-<main id="main-content" class="main-content" role="main">
-
+<main id="main-content" class="main-content site-content" role="main">
+	
 <?php
 	while ( have_posts() ) :
 		the_post();

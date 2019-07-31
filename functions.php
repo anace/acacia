@@ -81,6 +81,23 @@ if ( ! function_exists( 'acacia_setup' ) ) :
 			'flex-width'  => true,
 			'flex-height' => true,
 		) );
+
+		/*
+		 * Enable support for Post Formats.
+		 *
+		 * See: https://codex.wordpress.org/Post_Formats
+		 */
+		add_theme_support( 'post-formats', array(
+			'aside',
+			'image',
+			'video',
+			'quote',
+			'link',
+			'gallery',
+			'status',
+			'audio',
+			'chat',
+		) );
 	}
 endif;
 add_action( 'after_setup_theme', 'acacia_setup' );

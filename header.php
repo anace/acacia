@@ -36,7 +36,10 @@
 		</div><!-- .site-branding -->
 
 		<nav id="main-navigation" class="site-navigation primary-navigation">
-			<button class="menu-toggle" aria-controls="menu" aria-expanded="false"><?php _e( 'Menu', 'acacia' ); ?></button>
+			<button class="menu-toggle" aria-controls="menu" aria-expanded="false"><?php _e( 'Menu', 'acacia' ); ?>
+				<span class="dashicons" aria-hidden="true"></span>
+			</button>
+
 			<?php
 			wp_nav_menu( array(
 				'theme_location' => 'primary',

@@ -650,12 +650,11 @@ a:hover, a:active {
 /* Styling the links */
 .site-navigation a {
 	display: block;
-	padding: 0.75em 0.75em;
+	font-size: 1.125rem;
+	padding: 1.25em 0.75em;
 	color: #fff;
 	background-color: #ff0058;
-	font-size: 17px;
 	text-decoration: none;
-	/*! margin-right: 70px; */
 	box-sizing: border-box;
 	width: 100%;
 	white-space: normal;
@@ -668,7 +667,7 @@ a:hover, a:active {
 }
 
 /* Set menu item's width to 100% */
-.site-navigation ul li {
+.site-navigation .menu li {
 	display: block;
 	width: 100%;
 	border-top: 1px solid #bbb;
@@ -683,29 +682,43 @@ a:hover, a:active {
 /* Styling the toggle buttons */
 .menu-toggle {
 	background-color: #ff0058;
-	padding: 1em;
-	margin: 0 0 2px 1em;	
+	padding: 1em 0.8125em 0.8125em;
+	/*! margin: 0 0 2px 1em; */	
 	color: #fff;
-	font-size: 17px;
+	font-size: 18px;
+	font-size: 1.125em;
 	text-decoration: none;
 	border: 1px solid #cc0058;
 	border-radius: 4px;
 	display: block;
+	position: absolute;
+	top: 0;
+	right: 0;
+}
+
+.menu-toggle .dashicons:before {
+	content: '\f228';
 }
 
 .toggled .menu-toggle {
-	background-color: #444;
+	background-color: #606060;
+}
+
+.toggled .menu-toggle .dashicons:before {
+	content: '\f158';
 }
 
 .dropdown-toggle {
 	background-color: transparent;
+	padding: 1.1em;
 	position: absolute;
+	top: 1em;
 	right: 1em;
-	border: 1px transparent;
+	border: 1px solid transparent;
 	border-left: 1px dashed;
 	border-radius: 0;
 	color: #fff;
-	top: 0.5em;
+	text-align: center;
 }
 
 .dropdown-toggle:hover,
@@ -713,28 +726,32 @@ a:hover, a:active {
 	border: 1px dashed;
 }
 
+.dropdown-toggle .dashicons {
+	font-size: 1.25rem;
+}
+
 .dropdown-toggle .dashicons:before {
 	content: '\f347';
 }
 
-.toggled-on > .dropdown-toggle .dashicons:before{
+.toggled-on > .dropdown-toggle .dashicons:before {
 	content: '\f343';
 }
 
-/* Hide Submenus by default */
+/* Hide Submenus by default using absolute positioning instead of display:none;. */
 .site-navigation .menu,
 .site-navigation .menu ul,
 .site-navigation .menu li:hover > ul,
 .site-navigation .menu li:focus > ul {
-	position: absolute; /* volver a absolute */
+	position: absolute;
 	top: 100%;
-	left: -9999em; /* volver a -99999*/
+	left: -9999em;
 	color: #ff00ff;
 	padding: 0;
 	margin: 0;
 }
 
-/* Display Dropdown when clicked on Menu Toggle */
+/* Display the menu when clicked on Menu Toggle */
 .toggled .menu {
 	display: block;
 	position: relative;
@@ -757,27 +774,17 @@ a:hover, a:active {
 	top: 100%;
 }
 
-/* Esto queda anulado más tarde. */
-.site-navigation .menu ul a {
-	padding: 0 40px;
-}
-
-/* Esto también */
-.site-navigation .menu ul ul a {
-	padding: 0 80px;
-}
-
 .site-navigation .menu ul a,
 .site-navigation .menu ul ul a {
-	padding: 0.75em 0.75em;
+	padding: 1.25em 0.75em;
 }
 
 .site-navigation .menu ul a {
-	padding: 0.75em 1.25em;
+	padding: 1.25em 1.25em;
 }
 
 .site-navigation .menu ul ul a {
-	padding: 0.75em 1.75em;
+	padding: 1.25em 1.75em;
 }
 
 .site-navigation .menu ul a,
@@ -785,10 +792,8 @@ a:hover, a:active {
 	background-color: #444; 
 }
 	
-/* Second and Following Tiers Dropdown */
+/* Second and following tiers submenus */
 .site-navigation .menu ul li {
-	/*! display: flex; */
-	/*! width: 100%; */
 }
 
 .menu .current_page_item > a,
@@ -802,29 +807,45 @@ a:hover, a:active {
 	display: flex;
 	justify-content: space-evenly;
 	background-color: #ff0058;
-	border-top: 1px dotted #bbb;
+	border-top: 1px solid #bbb;
 }
 
 .toggled .social-menu li {
-	width: 44px;
-	height: 44px;
+	width: 2.75em;
+	height: 2.75em;
 	border: 1px solid #bbb;
 	border-radius: 2px;
 	margin: 0.5em 0;
 }
 
 .toggled .social-menu a {
-	padding: 0.5em;
+	padding: 0.4em;
 	text-align: center;
 }
 
-.toggled .social-menu a .dashicons {
-	/*! font-size: 1.2em; */
-	/*! line-height: 1; */
+.social-menu a .dashicons {
+	vertical-align: middle;
 }
 
-.social-menu .dashicons:before {
-	content: "\273c";
+.social-menu a .dashicons:before {
+	content: "\f240";
+}
+
+.social-menu a[href*="twitter.com"] .dashicons:before {
+	content: "\f301";
+}
+
+.social-menu a[href*="facebook.com"] .dashicons:before {
+	content: "\f304";
+}
+
+.social-menu a[href*="instagram.com"] .dashicons:before {
+	content: "\f12d";
+}
+
+.social-menu a[href*="wordpress.org"] .dashicons:before,
+.social-menu a[href*="wordpress.com"] .dashicons:before {
+	content: "\f120";
 }
 
 /* ---------------------------------------------
@@ -990,6 +1011,10 @@ main {
 	padding: 0 5%;
 }
 
+.site-header {
+	position: relative;
+}
+
 /*--------------------------------------------------------------
 11. Content
 --------------------------------------------------------------*/
@@ -1057,6 +1082,12 @@ object {
 /* Make sure logo link wraps around logo image. */
 .custom-logo-link {
 	display: inline-block;
+}
+
+.mejs-container,
+.mejs-audio {
+	max-width: 100% !important;
+	width: 100% !important;  /* This solves a bug in Firefox when there is a playlist in the content. */
 }
 
 /*--------------------------------------------------------------
@@ -1159,7 +1190,7 @@ object {
 /*
 1. Normalize
 2. Typography
-3. Elements
+
 4. Forms
 5. Menus
 6. Accessibility
@@ -1176,6 +1207,14 @@ object {
 	12.3 Blocks
 13. Infinite scroll
 */
+
+/*
+3. Elements
+*/
+
+body {
+	position: relative;
+}
 
 /*
 5. Navigation
@@ -1204,8 +1243,14 @@ object {
 	width: auto;
 }
 
+.site-navigation .menu ul li:first-child {
+	border-top: 0;
+}
+
+.site-navigation .menu a,
 .site-navigation .menu ul a,
 .site-navigation .menu ul ul a {
+	font-size: 1.125rem;
 	padding: 0.75em 0.75em;
 }
 
@@ -1216,6 +1261,7 @@ object {
 	/* has to be the same number as the "line-height" of "nav a" */
 	top: 100%;
 	left: -9999em;
+	/*! border: 1px solid #606060; */
 }
 	
 /* Display Dropdowns on Hover */
@@ -1244,8 +1290,8 @@ object {
 
 .site-navigation .menu ul a:hover,
 .site-navigation .menu ul a:focus { 
-	background-color: #ffffff;
-	color: #444;
+	background-color: #ddd;
+	color: #222;
 }
 
 /* The icon for opening and closing the submenus */
@@ -1259,51 +1305,57 @@ li > a:only-child:after {
 
 /* 10. Header, Main and Footer  */
 
+.site {
+	display: grid;
+	grid-template-columns: repeat(3, 1fr);
+	grid-template-rows: auto auto auto;
+	grid-column-gap: 6%;
+	column-gap: 6%;
+	grid-row-gap: 3em;
+	row-gap: 3em;
+	/*grid-template-areas:
+	"aba aba aba"
+	"bob bob sasa"
+	"ofo ofo ofo";*/
+	padding: 0 6%;
+	border: 4px solid green;
+}
+
 .site-header {
-	grid-area: aba;
+	/*grid-area: aba;*/
+	grid-column: 1 / span 3;
+	grid-row: 1 / 2;
 	padding: 0;
 	border: 1px solid green;
 	background-color: rgba(0, 0, 125, 0.4);
 }
 
 .site-content {
-	grid-area: bob;
+	/*grid-area: bob;*/
+	grid-column: 1 / 3;
+	grid-row: 2 / 3;
 	padding: 0;
 	border: 1px solid blueviolet;
 	background-color: rgba(0, 125, 0, 0.4);
 }
 
 .sidebars {
-	grid-area: sasa;
+	/*grid-area: sasa;*/
+	grid-column: 3 / 4;
+	grid-row: 2 / 3;
 	border: 1px solid red;
 	background-color: rgba(125, 0, 0, 0.4);
 }
 
 .site-footer {
-	grid-area: ofo;
+	/*grid-area: ofo;*/
+	grid-column: 1 / span 3;
+	grid-row: 3 / 4;
 	padding: 1em 0;
 	text-align: center;
 	border: 1px solid yellow;
 	background-color: rgba(0, 125, 125, 0.4);
 
-}
-
-.site {
-	display: grid;
-	grid-template-columns: repeat(3, 1fr);
-	grid-template-rows: auto 100% auto;
-	grid-column-gap: 6%;
-	column-gap: 6%;
-	grid-row-gap: 3em;
-	row-gap: 3em;
-	grid-template-areas:
-	"aba aba aba"
-	"bob bob sasa"
-	"ofo ofo ofo";
-
-
-	padding: 0 6%;
-	border: 4px solid green;
 }
 
 article {

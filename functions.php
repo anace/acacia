@@ -69,6 +69,8 @@ if ( ! function_exists( 'acacia_setup' ) ) :
 
 		// Add theme support for selective refresh for widgets.
 		add_theme_support( 'customize-selective-refresh-widgets' );
+		add_theme_support( 'wp-block-styles' );
+		add_theme_support( 'responsive-embeds' );
 
 		/**
 		 * Add support for core custom logo.
@@ -132,6 +134,20 @@ function acacia_widgets_init() {
 		'before_title'  => '<h2 class="widget-title">',
 		'after_title'   => '</h2>',
 	) );
+
+	$acacia_footer_widgets = get_theme_mod( 'footer_widgets', 2);
+
+	for ($i = 1; $i <= $acacia_footer_widgets; ++$i) {
+		register_sidebar( array(
+			'name'          => sprintf( __( 'Footer %d', 'acacia' ), $i ),
+			'id'            => sprintf( 'footer-%d', $i),
+			'description'   => esc_html__( 'Add widgets here.', 'acacia' ),
+			'before_widget' => '<section id="%1$s" class="widget %2$s">',
+			'after_widget'  => '</section>',
+			'before_title'  => '<h2 class="widget-title">',
+			'after_title'   => '</h2>',
+		) );
+	}
 }
 add_action( 'widgets_init', 'acacia_widgets_init' );
 

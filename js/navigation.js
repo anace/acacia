@@ -7,7 +7,7 @@
 ( function() {
 	var container, button, dropdown, icon, screenreadertext, parentLink, menu, submenu, links, i, len;
 
-	container = document.getElementById( 'main-navigation' );
+	container = document.getElementById( 'masthead' );
 	if ( ! container ) {
 		return;
 	}
@@ -17,20 +17,19 @@
 		return;
 	}
 
-	menu = container.getElementsByTagName( 'ul' )[0];
+	menu = container.getElementsByTagName( 'nav' )[0];
 
 	parentLink = container.querySelectorAll( '.menu-item-has-children, .page_item_has_children' );
 
 	for ( i = 0, len = parentLink.length; i < len; i++ ) {
-		var dropdown = document.createElement('button');
-		var submenu = parentLink[i].querySelector('.sub-menu');
-		var icon = document.createElement('span');
-		var screenreadertext = document.createElement('span');
+		var dropdown = document.createElement('button'),
+			submenu = parentLink[i].querySelector('.sub-menu'),
+			icon = document.createElement('span'),
+			screenreadertext = document.createElement('span');
 
 		parentLink[i].insertBefore( dropdown, submenu );
 
 		dropdown.classList.add('dropdown-toggle');
-		dropdown.setAttribute('aria-controls', 'sub-menu');
 		dropdown.setAttribute( 'aria-expanded', 'false' );
 		submenu.setAttribute( 'aria-expanded', 'false' );
 		dropdown.appendChild(icon);
@@ -45,20 +44,18 @@
 			submenu = parentLink.querySelector('.sub-menu');
 			screenreadertext = this.childNodes[1];
 
-		if ( -1 !== parentLink.className.indexOf( 'toggled-on' ) ) {
-			parentLink.className = parentLink.className.replace( ' toggled-on', '' );
-			this.setAttribute( 'aria-expanded', 'false' );
-			screenreadertext.textContent = acaciaScreenReaderText.expand;
-			submenu.setAttribute( 'aria-expanded', 'false' );
-			
-		} else {
-			parentLink.className += ' toggled-on';
-			this.setAttribute( 'aria-expanded', 'true' );
-			screenreadertext.textContent = acaciaScreenReaderText.collapse;
-			submenu.setAttribute( 'aria-expanded', 'true' );
+			if ( -1 !== parentLink.className.indexOf( 'toggled-on' ) ) {
+				parentLink.className = parentLink.className.replace( ' toggled-on', '' );
+				this.setAttribute( 'aria-expanded', 'false' );
+				screenreadertext.textContent = acaciaScreenReaderText.expand;
+				submenu.setAttribute( 'aria-expanded', 'false' );
+			} else {
+				parentLink.className += ' toggled-on';
+				this.setAttribute( 'aria-expanded', 'true' );
+				screenreadertext.textContent = acaciaScreenReaderText.collapse;
+				submenu.setAttribute( 'aria-expanded', 'true' );
+			}
 		}
-	}
-		
 	}
 
 	// Hide menu toggle button if menu is empty and return early.

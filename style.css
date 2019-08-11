@@ -464,6 +464,7 @@ big {
 --------------------------------------------------------------*/
 html {
 	box-sizing: border-box;
+	overflow-wrap: anywhere;
 }
 
 *,
@@ -997,6 +998,15 @@ nav:after,
 	padding-inline-start: 2em;
 }
 
+.widget .gallery {
+	margin-bottom: 1em;
+}
+
+.footer-widget .widget {
+	padding: 1em;
+}
+
+
 /*--------------------------------------------------------------
 10. Header, Main and Footer
 --------------------------------------------------------------*/
@@ -1085,7 +1095,8 @@ object {
 }
 
 .mejs-container,
-.mejs-audio {
+.mejs-audio,
+.mejs-video {
 	max-width: 100% !important;
 	width: 100% !important;  /* This solves a bug in Firefox when there is a playlist in the content. */
 }
@@ -1117,53 +1128,90 @@ object {
 --------------------------------------------------------------*/
 .gallery {
 	margin-bottom: 1.5em;
+	display: grid;
+	column-gap: 1em;
+	row-gap: 1em;
 }
 
 .gallery-item {
-	display: inline-block;
 	text-align: center;
 	vertical-align: top;
+	line-height: 1.5;
 	width: 100%;
+	margin: 0;
 }
 
-.gallery-columns-2 .gallery-item {
-	max-width: 50%;
+.gallery-columns-1 {
+	grid-template-columns: 1fr;
 }
 
-.gallery-columns-3 .gallery-item {
-	max-width: 33.33%;
+.gallery-columns-2 {
+	grid-template-columns: repeat(2, 1fr);
 }
 
-.gallery-columns-4 .gallery-item {
-	max-width: 25%;
+.gallery-columns-3 {
+	grid-template-columns: repeat(3, 1fr);
 }
 
-.gallery-columns-5 .gallery-item {
-	max-width: 20%;
+.gallery-columns-4,
+.widget .gallery-columns-4 {
+	grid-template-columns: repeat(4, 1fr);
+	column-gap: 0.8em;
+	row-gap: 0.8em;
 }
 
-.gallery-columns-6 .gallery-item {
-	max-width: 16.66%;
+.gallery-columns-5,
+.widget .gallery-columns-5 {
+	grid-template-columns: repeat(5, 1fr);
+	column-gap: 0.7em;
+	row-gap: 0.7em;
 }
 
-.gallery-columns-7 .gallery-item {
-	max-width: 14.28%;
+.gallery-columns-6,
+.widget .gallery-columns-6 {
+	grid-template-columns: repeat(6, 1fr);
+	column-gap: 0.6em;
+	row-gap: 0.6em;
 }
 
-.gallery-columns-8 .gallery-item {
-	max-width: 12.5%;
+.gallery-columns-7,
+.widget .gallery-columns-7 {
+	grid-template-columns: repeat(7, 1fr);
+	column-gap: 0.5em;
+	row-gap: 0.5em;
 }
 
-.gallery-columns-9 .gallery-item {
-	max-width: 11.11%;
+.gallery-columns-8,
+.widget .gallery-columns-8 {
+	grid-template-columns: repeat(8, 1fr);
+	column-gap: 0.5em;
+	row-gap: 0.5em;
+}
+
+.gallery-columns-9,
+.widget .gallery-columns-9 {
+	grid-template-columns: repeat(9, 1fr);
+	column-gap: 0.5em;
+	row-gap: 0.5em;
 }
 
 .gallery-caption {
 	display: block;
+	font-size: 0.9em;
+	font-style: italic;
+	color: #656565;
 }
 
 .wp-block-gallery {
 	margin: 0 0 1.667em 0;
+}
+
+.wp-block-gallery.alignleft {
+	margin: 0 1.667em 1.667em 0
+}
+
+.wp-block-gallery.alignright {
+	margin: 0 0 1.667em 1.667em;
 }
 
 /*--------------------------------------------------------------
@@ -1214,6 +1262,7 @@ object {
 
 body {
 	position: relative;
+	overflow-wrap: anywhere;
 }
 
 /*
@@ -1307,8 +1356,8 @@ li > a:only-child:after {
 
 .site {
 	display: grid;
-	grid-template-columns: repeat(3, 1fr);
-	grid-template-rows: auto auto auto;
+	grid-template-columns: repeat(3, minmax(0, 1fr));
+	grid-template-rows: auto;
 	grid-column-gap: 6%;
 	column-gap: 6%;
 	grid-row-gap: 3em;
@@ -1326,41 +1375,77 @@ li > a:only-child:after {
 	grid-column: 1 / span 3;
 	grid-row: 1 / 2;
 	padding: 0;
-	border: 1px solid green;
-	background-color: rgba(0, 0, 125, 0.4);
+	/*border: 1px solid green;
+	background-color: rgba(0, 0, 125, 0.4);*/
 }
 
 .site-content {
 	/*grid-area: bob;*/
 	grid-column: 1 / 3;
-	grid-row: 2 / 3;
+	grid-row: 2 / 4;
 	padding: 0;
-	border: 1px solid blueviolet;
-	background-color: rgba(0, 125, 0, 0.4);
+	/*border: 1px solid blueviolet;
+	background-color: rgba(0, 125, 0, 0.4);*/
 }
 
 .sidebars {
 	/*grid-area: sasa;*/
 	grid-column: 3 / 4;
-	grid-row: 2 / 3;
-	border: 1px solid red;
-	background-color: rgba(125, 0, 0, 0.4);
+	grid-row: 2 / 4;
+	/*border: 1px solid red;
+	background-color: rgba(125, 0, 0, 0.4);*/
 }
 
 .site-footer {
 	/*grid-area: ofo;*/
 	grid-column: 1 / span 3;
-	grid-row: 3 / 4;
+	grid-row: 5 / 6;
 	padding: 1em 0;
 	text-align: center;
-	border: 1px solid yellow;
-	background-color: rgba(0, 125, 125, 0.4);
-
+	/*border: 1px solid yellow;*/
+	/*background-color: rgba(0, 125, 125, 0.4);*/
 }
 
 article {
-	border: 1px solid aquamarine;
+	/*border: 1px solid aquamarine;*/
 }
+
+.footer-widgets {
+	grid-column: 1 /4;
+	grid-row: 4 / 5;
+	display: flex;
+	justify-content: space-evenly;
+	/*background-color: rgba(125, 0, 125, 0.4);*/
+}
+
+.footer-widgets.columns-1 .footer-widget {
+	width: 100%;
+}
+
+.footer-widgets.columns-2 .footer-widget {
+	width: 50%;
+}
+
+.footer-widgets.columns-3 .footer-widget {
+	width: 33.3%;
+}
+
+.footer-widgets.columns-4 .footer-widget {
+	width: 25%;
+}
+
+.gallery-columns-4,
+.gallery-columns-5,
+.gallery-columns-6,
+.gallery-columns-7,
+.gallery-columns-8,
+.gallery-columns-9  {
+	column-gap: 1em;
+	row-gap: 1em;
+}
+	
+
+
 
 
 }

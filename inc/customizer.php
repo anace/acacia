@@ -30,6 +30,13 @@ function acacia_customize_register( $wp_customize ) {
 		'Source Serif Pro' => 'Source Serif Pro',
 	);
 
+	$footer_widgets = array(
+		'1' => 1,
+		'2' => 2,
+		'3' => 3,
+		'4' => 4,
+	);
+
 	$wp_customize->get_setting( 'blogname' )->transport         = 'postMessage';
 	$wp_customize->get_setting( 'blogdescription' )->transport  = 'postMessage';
 	$wp_customize->get_setting( 'header_textcolor' )->transport = 'postMessage';
@@ -46,7 +53,7 @@ function acacia_customize_register( $wp_customize ) {
 	}
 
 	// ==============================
-	// ==   Acuarela Custom Settings    ==
+	// ==   Acacia Custom Settings    ==
 	// ==============================
 	$wp_customize->add_section(
 		'theme_settings',
@@ -114,6 +121,27 @@ function acacia_customize_register( $wp_customize ) {
 			'section'  => 'theme_settings',
 			'type'     => 'select',
 			'choices'  => $google_fonts_text,
+		)
+	);
+
+	// ===============================
+	$wp_customize->add_setting(
+		'footer_widgets',
+		array(
+			'sanitize_callback' => 'absint',
+			'capability'        => 'edit_theme_options',
+			'default'           => 2,
+		)
+	);
+
+	$wp_customize->add_control(
+		'footer_widgets',
+		array(
+			'settings' => 'footer_widgets',
+			'label'    => __( 'Choose the number of footer widgets', 'acacia' ),
+			'section'  => 'theme_settings',
+			'type'     => 'select',
+			'choices'  => $footer_widgets,
 		)
 	);
 }

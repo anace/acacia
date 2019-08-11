@@ -10,8 +10,8 @@
  * @since Acacia 1.0
  */
 
+get_sidebar( 'footer' );
 ?>
-
 	<footer id="colophon" class="site-footer" role="contentinfo">
 		<div class="site-info">
 			<a href="<?php echo esc_url( __( 'https://wordpress.org/', 'acacia' ) ); ?>">
